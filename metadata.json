@@ -1,0 +1,5 @@
+{
+  "name": "KrishiCarbon Exchange",
+  "description": "A national-scale digital infrastructure platform for sustainable farming and carbon credit trading.",
+  "requestFramePermissions": ["geolocation"]
+}

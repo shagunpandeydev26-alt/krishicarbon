@@ -1,0 +1,97 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
+@import "leaflet/dist/leaflet.css";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  
+  --color-primary: #A7F432;
+  --color-accent: #0B6E4F;
+  --color-secondary: #6B4226;
+  --color-bg-soft: #020402;
+  --color-card-bg: rgba(255, 255, 255, 0.03);
+}
+
+@layer base {
+  body {
+    @apply bg-bg-soft text-slate-300 font-sans antialiased selection:bg-primary selection:text-slate-950;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-display font-bold tracking-tight text-white;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/[0.03] backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.8)] rounded-3xl transition-all duration-500;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-slate-950 px-8 py-4 rounded-2xl font-bold hover:bg-primary/90 transition-all shadow-[0_0_30px_rgba(167,244,50,0.3)] active:scale-95 flex items-center justify-center gap-2;
+  }
+  
+  .btn-accent {
+    @apply bg-white/5 text-white border border-white/10 px-8 py-4 rounded-2xl font-bold hover:bg-white/10 transition-all backdrop-blur-md active:scale-95 flex items-center justify-center gap-2;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px rgba(167, 244, 50, 0.5);
+  }
+
+  .border-glow {
+    box-shadow: inset 0 0 20px rgba(167, 244, 50, 0.1), 0 0 20px rgba(167, 244, 50, 0.1);
+  }
+}
+
+.parallax-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-bg-soft;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full hover:bg-primary/50 transition-colors;
+}
+
+
+/* Custom Leaflet overrides */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+}
+
